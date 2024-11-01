@@ -27,8 +27,7 @@ export default function calendarTabScreen() {
         }></ParallaxScrollView> */
         <div>
         <ThemedView style={styles.titleContainer}>
-          <ThemedText type="title">{"Hello World"}</ThemedText>
-          <HelloWave />
+          <ThemedText type="title">{"Writing Days"}</ThemedText>
         </ThemedView>
         <MainCalendar/>
      <Button title="clear" onPress={clearAsyncStorage}>
