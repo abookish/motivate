@@ -32,7 +32,6 @@ export function MainCalendar() {
     markingType={'period'}
     markedDates= {markedDates}
     onDayPress={(day:any) => {
-      console.log(`clicking on ${day}`)
       setSelected((prevSelected: string[]) => toggleSelected(day.dateString, prevSelected))
     }
      }

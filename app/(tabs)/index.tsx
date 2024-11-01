@@ -10,11 +10,9 @@ import { getCalendarDateString } from "react-native-calendars/src/services";
 const addTodayToArray = (prevSelectedArray: string[]):string[] => {
   const calendarFormatNow = getCalendarDateString(new Date()) //todo store as set so i dont have to do this
   if (!prevSelectedArray.includes(calendarFormatNow)) {
-    console.log('adding to array it should be selected now')
       return [...prevSelectedArray,calendarFormatNow]
 } 
-console.log(`should already be in stored`) 
-return prevSelectedArray
+  return prevSelectedArray
 }
 export default function HomeScreen() {
   const { setSelected, selected } = useTabContext();
