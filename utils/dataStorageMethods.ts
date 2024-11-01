@@ -22,6 +22,7 @@ export async function storeData (value: any): Promise<any> {
 
 
 export const clearAsyncStorage = async() => {
-  AsyncStorage.clear();
+  console.log('clear async storage called')
+  await AsyncStorage.clear();
 }
 

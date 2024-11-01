@@ -4,14 +4,15 @@ import { HelloWave } from '@/components/HelloWave';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
+import { useTabContext } from './TabContext';
 
-const didTaskYes = async() => {
-console.log("Yup")
-}
-const didTaskNo = async() => {
-  console.log("Nope")
-}
 export default function HomeScreen() {
+  const { setWroteTodayButton } = useTabContext();
+
+const didWritingYes = async() => {
+console.log("Yup")
+setWroteTodayButton(true)
+}
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
@@ -22,10 +23,8 @@ export default function HomeScreen() {
         />
       }>
       <ThemedView style={styles.stepContainer}>
-        <ThemedText type="default">did you write today?</ThemedText>
-        <Button title="Yes" onPress={didTaskYes}>
-        </Button>
-        <Button title="No" onPress={didTaskNo}>
+        <ThemedText type="default">So?</ThemedText>
+        <Button title="I wrote today" onPress={didWritingYes}>
         </Button>
       </ThemedView>
     </ParallaxScrollView>
