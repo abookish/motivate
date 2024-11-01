@@ -1,8 +1,8 @@
 import { StyleSheet } from 'react-native';
 import { Calendar } from 'react-native-calendars';
 import React, {useState, useEffect}from 'react';
-import {storeData} from '../utils/dataMethods'
-import { calendarDatesObject, makeDateDataObject } from '@/utils/formatDates';
+import {storeData} from '../utils/dataStorageMethods'
+import { calendarDatesObject, createDateObject } from '@/utils/formatDates';
 
 export function MainCalendar(
     
@@ -13,7 +13,7 @@ export function MainCalendar(
     const [selectedDates, setSelectedDates] = useState<string[]>(props.selected|| [])
   useEffect(() => {
     if (!!selectedDates && selectedDates.length > 0) {
-      setMarkedDates(makeDateDataObject(selectedDates))
+      setMarkedDates(createDateObject(selectedDates))
     }
     storeData(selectedDates)
   }, [selectedDates]);

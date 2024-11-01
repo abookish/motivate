@@ -4,7 +4,7 @@ import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { HelloWave } from '@/components/HelloWave';
-import { clearAsyncStorage, getData } from '@/utils/dataMethods';
+import { clearAsyncStorage, getData } from '@/utils/dataStorageMethods';
 import React, { useEffect, useState } from 'react';
 import { MainCalendar } from '@/components/mainCalendar';
 
@@ -13,7 +13,7 @@ export default function calendarTabScreen() {
   const [dataLoaded, setDataLoaded] = useState<Boolean>(false)
   const [stored, setStored] = useState<string[]>([])
   
-const fetchData = async () => { //todo make this get/fetch combo more concise or something
+const fetchData = async () => {
   const data = await getData()
   console.log(data)
   if (data?.length > 0) {

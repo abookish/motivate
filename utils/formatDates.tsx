@@ -1,3 +1,5 @@
+import { getIsStartandIsEnd } from "./dateMethods"
+
 export type calendarDatesObject = {[date:string]:{ 
     startingDay: Boolean,
     endingDay: Boolean,
@@ -5,7 +7,7 @@ export type calendarDatesObject = {[date:string]:{
   }
   }
 
- export function makeDateDataObject (clickedDates: string[]): any{
+ export function createDateObject (clickedDates: string[]): any{
      if (!clickedDates|| clickedDates.length <1) {
     return null
 } else {
@@ -14,8 +16,9 @@ export type calendarDatesObject = {[date:string]:{
       {
         selected: true, 
         color: 'green' ,
+        ...getIsStartandIsEnd(date, clickedDates as string[])
     }
     ])
   )
   }}
-        //...getIsStartandIsEnd(date, clickedDates as string[])
+        
