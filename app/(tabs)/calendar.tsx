@@ -13,14 +13,17 @@ import { useTabContext } from './TabContext';
 const addTodayToArray = (prevSelectedArray: string[]):string[] => {
   const calendarFormatNow = getCalendarDateString(new Date())
   if (!prevSelectedArray.includes(calendarFormatNow)) {
+    console.log('adding to array it should be selected now')
       return [...prevSelectedArray,calendarFormatNow]
-} return prevSelectedArray
+} 
+console.log(`should already be in stored`)
+return prevSelectedArray
 }
 
 export default function calendarTabScreen() {
   const [dataLoaded, setDataLoaded] = useState<Boolean>(false)
   const [stored, setStored] = useState<string[]>([])
-  const { wroteTodayButton } = useTabContext();
+  const { wroteTodayButton, setWroteTodayButton } = useTabContext();
   
 const fetchData = async () => {
   let data = await getData()
@@ -29,6 +32,7 @@ const fetchData = async () => {
   if (data?.length > 0) {
     setStored(data)
   }
+  setWroteTodayButton(false)
   setDataLoaded(true)
 }
   useEffect( () => {
@@ -40,6 +44,7 @@ const fetchData = async () => {
     if (wroteTodayButton && dataLoaded) {
       console.log('conditional true')
       setStored((prevValues) => addTodayToArray(prevValues));
+      setWroteTodayButton(false)
     }
   }, [wroteTodayButton]); 
    if (!dataLoaded) {
