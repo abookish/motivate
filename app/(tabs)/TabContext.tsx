@@ -1,11 +1,31 @@
-import React, { createContext, useState, useContext } from 'react';
+import { getData } from '@/utils/dataStorageMethods';
+import React, { createContext, useState, useContext, useEffect } from 'react';
 const TabContext = createContext<any>(null); 
 
 export const TabProvider = ({ children }: { children: React.ReactNode }) => {
-  const [wroteTodayButton, setWroteTodayButton] = useState<boolean>(false); //state will reset to false every render
+  const [dataLoaded, setDataLoaded] = useState<Boolean>(false)
+  const [selected, setSelected] = useState<string[]>([])
+
+  const fetchData = async () => {
+    let data = await getData()
+    console.log(data)
+    if (data?.length > 0) {
+      setSelected(data)
+    }
+    setDataLoaded(true)
+  }
+    useEffect( () => {
+      console.log("Fetching previous data...")
+      fetchData()
+    }, []);
+    
+     if (!dataLoaded) {
+      return "Fetching data"
+     }
+
 
   return (
-    <TabContext.Provider value={{ wroteTodayButton, setWroteTodayButton }}>
+    <TabContext.Provider value={{ selected, setSelected }}>
       {children}
     </TabContext.Provider>
   );

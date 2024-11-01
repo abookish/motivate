@@ -5,13 +5,23 @@ import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { useTabContext } from './TabContext';
+import { getCalendarDateString } from "react-native-calendars/src/services";
 
+const addTodayToArray = (prevSelectedArray: string[]):string[] => {
+  const calendarFormatNow = getCalendarDateString(new Date()) //todo store as set so i dont have to do this
+  if (!prevSelectedArray.includes(calendarFormatNow)) {
+    console.log('adding to array it should be selected now')
+      return [...prevSelectedArray,calendarFormatNow]
+} 
+console.log(`should already be in stored`) 
+return prevSelectedArray
+}
 export default function HomeScreen() {
-  const { setWroteTodayButton } = useTabContext();
+  const { setSelected, selected } = useTabContext();
 
 const didWritingYes = async() => {
 console.log("Yup")
-setWroteTodayButton(true)
+setSelected((prevValues) => addTodayToArray(prevValues));
 }
   return (
     <ParallaxScrollView

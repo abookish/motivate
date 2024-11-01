@@ -16,40 +16,14 @@ const addTodayToArray = (prevSelectedArray: string[]):string[] => {
     console.log('adding to array it should be selected now')
       return [...prevSelectedArray,calendarFormatNow]
 } 
-console.log(`should already be in stored`)
+console.log(`should already be in stored`) //not working for if i toggle off manually
 return prevSelectedArray
 }
 
 export default function calendarTabScreen() {
-  const [dataLoaded, setDataLoaded] = useState<Boolean>(false)
-  const [stored, setStored] = useState<string[]>([])
-  const { wroteTodayButton, setWroteTodayButton } = useTabContext();
+
+  const { selected } = useTabContext();
   
-const fetchData = async () => {
-  let data = await getData()
-  console.log(data)
-  if (wroteTodayButton) data = addTodayToArray(data)
-  if (data?.length > 0) {
-    setStored(data)
-  }
-  setWroteTodayButton(false)
-  setDataLoaded(true)
-}
-  useEffect( () => {
-    console.log("Fetching previous data...")
-    fetchData()
-  }, []);
-  useEffect(() => {
-    console.log(`value of button press changed ${wroteTodayButton}`)
-    if (wroteTodayButton && dataLoaded) {
-      console.log('conditional true')
-      setStored((prevValues) => addTodayToArray(prevValues));
-      setWroteTodayButton(false)
-    }
-  }, [wroteTodayButton]); 
-   if (!dataLoaded) {
-    return "Fetching data"
-   }
   
     return (
       
@@ -64,7 +38,7 @@ const fetchData = async () => {
           <ThemedText type="title">{"Hello World"}</ThemedText>
           <HelloWave />
         </ThemedView>
-        <MainCalendar selected={stored}/>
+        <MainCalendar selected={selected}/>
      <Button title="clear" onPress={clearAsyncStorage}>
   </Button>
       </ParallaxScrollView>

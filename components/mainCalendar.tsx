@@ -3,20 +3,18 @@ import { Calendar } from 'react-native-calendars';
 import React, {useState, useEffect}from 'react';
 import {storeData} from '../utils/dataStorageMethods'
 import { calendarDatesObject, createDateObject } from '@/utils/formatDates';
+import { useTabContext } from '@/app/(tabs)/TabContext';
 
-export function MainCalendar(
-    
+export function MainCalendar() {
+    const { setSelected, selected } = useTabContext();
 
-  props: { selected?: string[]}
-) {
     const [markedDates, setMarkedDates] = useState<calendarDatesObject | Object>({}) 
-    const [selectedDates, setSelectedDates] = useState<string[]>(props.selected|| [])
   useEffect(() => {
-    if (!!selectedDates && selectedDates.length > 0) {
-      setMarkedDates(createDateObject(selectedDates))
+    if (!!selected) {
+      setMarkedDates(createDateObject(selected))
     }
-    storeData(selectedDates)
-  }, [selectedDates]);
+    storeData(selected)
+  }, [selected]);
 
   const toggleSelected = (selectedDayString: string, prevSelectedArray: string[]):string[] => {
     if (prevSelectedArray.includes(selectedDayString)) {
@@ -34,7 +32,8 @@ export function MainCalendar(
     markingType={'period'}
     markedDates= {markedDates}
     onDayPress={(day:any) => {
-      setSelectedDates((prevSelected: string[]) => toggleSelected(day.dateString, prevSelected))
+      console.log(`clicking on ${day}`)
+      setSelected((prevSelected: string[]) => toggleSelected(day.dateString, prevSelected))
     }
      }
   />
@@ -52,5 +51,3 @@ const styles = StyleSheet.create({
     marginTop: -6,
   },
 });
-//todo maybe this component should ONLY handle selected, pass selected to somewhere else to get the whole object and do operations
-//like a DateObject thing that gets passed
