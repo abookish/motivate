@@ -6,6 +6,7 @@ import { getCalendarDateString } from "react-native-calendars/src/services";
 import DisplayBox from '@/components/DisplayBox';
 import React from 'react';
 import { Surface, Text, Button } from 'react-native-paper';
+import useButtonState from '@/hooks/useSetButtonState';
 
 
 const addTodayToArray = (prevSelectedArray: string[]):string[] => {
@@ -16,16 +17,19 @@ const addTodayToArray = (prevSelectedArray: string[]):string[] => {
   return prevSelectedArray
 }
 export default function HomeScreen() {
-  const { setSelected, selected } = useTabContext();
+  const { setSelected, selected, wroteToday, setWroteToday } = useTabContext();
+  const { buttonText, buttonActive } = useButtonState();
 
 const didWritingYes = async() => {
-console.log("Yup")
 setSelected((prevValues) => addTodayToArray(prevValues));
+setWroteToday(true)
 }
+console.log(`wrote today is: ${wroteToday}`)
+
   return (
     <Surface style={{ flex: 1, justifyContent: 'center', alignItems: 'center', gap:16 }}>
-        <Button mode="contained" onPress={didWritingYes}  style={styles.button} accessibilityLabel="I wrote today">
-          I wrote today
+        <Button mode="contained" onPress={didWritingYes}  style={styles.button} accessibilityLabel="I wrote today" disabled={!buttonActive}>
+          {buttonText}
         </Button>
               <DisplayBox/>
               </Surface>

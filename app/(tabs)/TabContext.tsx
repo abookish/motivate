@@ -5,10 +5,10 @@ const TabContext = createContext<any>(null);
 export const TabProvider = ({ children }: { children: React.ReactNode }) => {
   const [dataLoaded, setDataLoaded] = useState<Boolean>(false)
   const [selected, setSelected] = useState<string[]>([])
-
+  const [wroteToday, setWroteToday] = useState(false);
+  
   const fetchData = async () => {
     let data = await getData()
-    console.log(data)
     if (data?.length > 0) {
       setSelected(data)
     }
@@ -25,7 +25,7 @@ export const TabProvider = ({ children }: { children: React.ReactNode }) => {
 
 
   return (
-    <TabContext.Provider value={{ selected, setSelected }}>
+    <TabContext.Provider value={{ selected, setSelected, wroteToday, setWroteToday }}>
       {children}
     </TabContext.Provider>
   );
