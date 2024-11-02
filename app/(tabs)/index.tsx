@@ -6,6 +6,7 @@ import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { useTabContext } from './TabContext';
 import { getCalendarDateString } from "react-native-calendars/src/services";
+import DisplayBox from '@/components/DisplayBox';
 
 const addTodayToArray = (prevSelectedArray: string[]):string[] => {
   const calendarFormatNow = getCalendarDateString(new Date()) //todo store as set so i dont have to do this
@@ -30,11 +31,12 @@ setSelected((prevValues) => addTodayToArray(prevValues));
           style={styles.reactLogo}
         />
       }>
-      <ThemedView style={styles.stepContainer}>
+      <ThemedView style={styles.stepContainer}> 
         <ThemedText type="default">So?</ThemedText>
         <Button title="I wrote today" onPress={didWritingYes}>
         </Button>
       </ThemedView>
+      <DisplayBox/>
     </ParallaxScrollView>
   );
 }

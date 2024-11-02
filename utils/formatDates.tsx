@@ -3,7 +3,7 @@ import { getIsStartandIsEnd } from "./dateMethods"
 export type calendarDatesObject = {[date:string]:{ 
     startingDay: Boolean,
     endingDay: Boolean,
-   selected: Boolean
+    selected: Boolean
   }
   }
 
