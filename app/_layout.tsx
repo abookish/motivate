@@ -1,10 +1,10 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import React, { useEffect } from 'react';
 import 'react-native-reanimated';
-import { PaperProvider } from 'react-native-paper';
+import { PaperProvider,   MD3DarkTheme,
+  MD3LightTheme, } from 'react-native-paper';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { TabProvider } from './(tabs)/TabContext';
 
@@ -13,6 +13,11 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
+
+  const paperTheme =
+    colorScheme === 'dark'
+      ? MD3DarkTheme
+      : MD3LightTheme;
   const [loaded] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
   });
@@ -29,7 +34,7 @@ export default function RootLayout() {
 
   return (
       <TabProvider>
-      <PaperProvider>
+      <PaperProvider theme={paperTheme}>
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="+not-found" />
