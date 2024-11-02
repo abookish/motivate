@@ -31,11 +31,6 @@ export const getIsStartingDay = (date: Date, dateStringArray: string[]):Boolean 
     }
 
   export const countThisMonth = (dateStringArray: string[]): number => {
-    console.log(`this is the array ${JSON.stringify(dateStringArray)}`)
-    console.log(`this is after filtering ${JSON.stringify(dateStringArray.filter(datestring=> isThisMonth(parseISO(datestring))))}`)
-    console.log(`${isThisMonth(parseISO('2024-11-01'))}`)
-    console.log(`${getMonth('2024-11-01')}`)
-    console.log(`${getMonth(Date.now())}`)
     return dateStringArray.filter(datestring=> isThisMonth(parseISO(datestring))).length 
     }
   
