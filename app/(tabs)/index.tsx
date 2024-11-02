@@ -1,12 +1,12 @@
-import { Image, StyleSheet, Platform, Button } from 'react-native';
+import { StyleSheet } from 'react-native';
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
 import { useTabContext } from './TabContext';
 import { getCalendarDateString } from "react-native-calendars/src/services";
 import DisplayBox from '@/components/DisplayBox';
+import React from 'react';
+import { Surface, Text, Button } from 'react-native-paper';
+
 
 const addTodayToArray = (prevSelectedArray: string[]):string[] => {
   const calendarFormatNow = getCalendarDateString(new Date()) //todo store as set so i dont have to do this
@@ -23,32 +23,26 @@ console.log("Yup")
 setSelected((prevValues) => addTodayToArray(prevValues));
 }
   return (
-<div>
-      <ThemedView style={styles.stepContainer}> 
-        <ThemedText type="default">So?</ThemedText>
-        <Button title="I wrote today" onPress={didWritingYes}>
+    <Surface style={{ flex: 1, justifyContent: 'center', alignItems: 'center', gap:16 }}>
+        <Button mode="contained" onPress={didWritingYes}  style={styles.button} accessibilityLabel="I wrote today">
+          I wrote today
         </Button>
-      </ThemedView>
-      <DisplayBox/>
-      </div>
+              <DisplayBox/>
+              </Surface>
+
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
+
   stepContainer: {
     gap: 8,
     marginBottom: 8,
+    alignItems: 'center'
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-  },
+  button: {
+    width: '20%', 
+    paddingVertical: 8, 
+    borderRadius: 4, // Rounded
+  }
 });

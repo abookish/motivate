@@ -9,11 +9,9 @@ const DisplayBox = () =>  {
 
 
 return (
-    <View style={styles.container}>
   <Surface style={styles.surface} elevation={2}>
      <Text>You wrote for {countThisMonth(selected)} days this month</Text>
   </Surface>
-  </View>
 )
 
 }
