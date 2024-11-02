@@ -15,7 +15,7 @@ export type calendarDatesObject = {[date:string]:{
       date,
       {
         selected: true, 
-        color: 'green' ,
+        color: 'purple' ,
         ...getIsStartandIsEnd(date, clickedDates as string[])
     }
     ])

@@ -1,11 +1,10 @@
-import { StyleSheet, Image, Button } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { Surface, Text, Button } from 'react-native-paper';
 
-import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
-import { HelloWave } from '@/components/HelloWave';
-import { clearAsyncStorage, getData } from '@/utils/dataStorageMethods';
-import React, { useEffect, useState } from 'react';
+import { clearAsyncStorage } from '@/utils/dataStorageMethods';
+import React, {  } from 'react';
 import { MainCalendar } from '@/components/mainCalendar';
 import { useTabContext } from './TabContext';
 
@@ -17,22 +16,13 @@ export default function calendarTabScreen() {
   
   
     return (
-      
-   /*    <ParallaxScrollView
-        headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-        headerImage={
-          <Image
-            source={require('@/assets/images/partial-react-logo.png')}
-          />
-        }></ParallaxScrollView> */
-        <div>
-        <ThemedView style={styles.titleContainer}>
+ <Surface style={{ flex: 1, justifyContent: 'center', alignItems: 'center', gap:16 }}>
           <ThemedText type="title">{"Writing Days"}</ThemedText>
-        </ThemedView>
         <MainCalendar/>
-     <Button title="clear" onPress={clearAsyncStorage}>
-  </Button>
-  </div>
+        <Button mode="contained" onPress={clearAsyncStorage} accessibilityLabel="I wrote today">
+          clear
+        </Button>
+  </Surface>
     )}
 const styles = StyleSheet.create({
   headerImage: {

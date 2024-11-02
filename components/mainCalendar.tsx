@@ -4,8 +4,6 @@ import React, {useState, useEffect}from 'react';
 import {storeData} from '../utils/dataStorageMethods'
 import { calendarDatesObject, createDateObject } from '@/utils/formatDates';
 import { useTabContext } from '@/app/(tabs)/TabContext';
-import { getDateStringsByMonthYear } from '@/utils/dateMethods';
-import { isToday } from 'date-fns';
 
 export function MainCalendar() {
     const { setSelected, selected, wroteToday, setWroteToday } = useTabContext();
@@ -28,9 +26,7 @@ export function MainCalendar() {
     }
   }
 
-  return (
-    <div>
-     
+  return (     
     <Calendar
     markingType={'period'}
     markedDates= {markedDates}
@@ -47,10 +43,7 @@ export function MainCalendar() {
       setSelected((prevSelected: string[]) => toggleSelected(day.dateString, prevSelected))
     }
      }
-  />
-
-  </div> 
-  
+  />  
   );
 }
 
