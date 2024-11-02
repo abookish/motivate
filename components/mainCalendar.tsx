@@ -36,11 +36,11 @@ export function MainCalendar() {
     markedDates= {markedDates}
     onDayPress={(day:any) => {
       console.log(`${JSON.stringify(day)}`)
-      if(day.datestring === todayString) {
+      if(day.dateString === todayString) {
         console.log("TODAY")
         setWroteToday(!wroteToday)
       } else {
-        console.log(`${todayString}`)
+        console.log(`${todayString} and ${day.dateString}`)
         console.log("not today")
       }
 
