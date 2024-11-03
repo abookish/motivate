@@ -25,6 +25,8 @@ export const getIsStartingDay = (date: Date, dateStringArray: string[]):Boolean 
     return dateStringArray.filter(datestring=> getYear(parseISO(datestring)) === year && getMonth(parseISO(datestring)) === (month - 1)) 
     }
   export const countThisWeek = (dateStringArray: string[]): number => {
+    console.log('supposed to be this week count')
+    console.log(`supposed count week ${dateStringArray.filter(datestring=> isThisWeek(parseISO(datestring))).length}`)
     return dateStringArray.filter(datestring=> isThisWeek(parseISO(datestring))).length 
 
 
@@ -35,6 +37,8 @@ export const getIsStartingDay = (date: Date, dateStringArray: string[]):Boolean 
     }
   
     export const countThisYear = (dateStringArray: string[]): number => {
+      console.log('supposed to be this year count')
+
       return dateStringArray.filter(datestring=> isThisYear(parseISO(datestring))).length 
 
 

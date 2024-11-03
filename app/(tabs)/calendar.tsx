@@ -18,9 +18,7 @@ export default function calendarTabScreen() {
     return (
  <Surface style={{ flex: 1, justifyContent: 'center', alignItems: 'center', gap:16 }}>
           <ThemedText type="title">{"Writing Days"}</ThemedText>
-          <Surface style={{ justifyContent: 'center', alignItems: 'center', flex: 1, width: '80%'}}>
         <MainCalendar/>
-        </Surface>
         <Button mode="contained" onPress={clearAsyncStorage} accessibilityLabel="I wrote today">
           clear
         </Button>
